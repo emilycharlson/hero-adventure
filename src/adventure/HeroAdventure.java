@@ -49,12 +49,64 @@ public class HeroAdventure {
 					enemyHealth -= damageDealt;
 					health -= damageTaken;
 					
+					System.out.println("\t> You struck the " + enemy + " for" + damageDealt + " damage.");
+					System.out.println("\t> You received " + damageTaken + " in retaliation.");
+					
+					if(health < 1) {
+						System.out.println("\tYou have taken too much damage, you are too weak to continue.");
+						break;
+					}
+					
 				} else if(input.equals("2")) {
+					if(numHealthPotions > 0) {
+						health += potionHeathAmount;
+						numHealthPotions--;
+						System.out.println("\tYou drank a health potion. Your health has improved by " + potionHeathAmount + "."
+											+ "\n\t> You now have " + health + " HP."
+											+ "\n\t? You have " + numHealthPotions + " health potions left. \n");
+					} else {
+						System.out.println("\t> You have no health potions left! Defeat enemies for ");
+					}
+					
+				} else if(input.equals("3")) {
+					System.out.println("\tYou ran away from the " + enemy + "!");
+					continue GAME;
 					
 				} else {
-					
+					System.out.println("\tInvalid command.");
 				}
 				
+				
+				if(health < 1) {
+					System.out.println("You limp out of the dungeon, weak from battle.");
+					break;
+				}
+				
+				System.out.println("-----------------------------------------");
+				System.out.println(" # " + enemy + " was defeated! # ");
+				System.out.println("# You have " + health + " HP left.");	
+				
+				if(randNum.nextInt(100) < healthPotionDropChance) {
+					numHealthPotions++;
+					System.out.println(" # The " + enemy + " dropped a health potion! # ");
+					System.out.println(" # You now have " + numHealthPotions + " health potion(s). #");
+				}
+				
+				System.out.println("-----------------------------------------");
+				System.out.println("What would you like to do now?");
+				System.out.println("1. Continue fighting");
+				System.out.println("2. Exit the dungeon ");
+				
+				String input = in.nextLine();
+				
+				while(!input.equals("1") && !input.equals("2")) {
+					System.out.println("Invalid command!");
+					input = in.nextLine();
+				}
+				 if(input.equals("1")) {
+					 System.out.println("You continue on your adventure!");
+			
+				 } else if(input.equals)
 			} 
 			
 		}
